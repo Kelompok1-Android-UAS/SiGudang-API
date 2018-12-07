@@ -23,7 +23,7 @@ conn.connect(err =>{
 });
 
 app.get("/", (req,res) => {
-    let jsonx = {"nama":"Muhammad Yusup","kelas":"XI-RPL","umur":"16 tahun"};
+    let jsonx = {"sukses":"1","pesan":"Selamat datang di API SiGudang"};
     res.send(jsonx);
 });
 
@@ -40,8 +40,8 @@ app.get("/users", (req,res) => {
 });
 
 app.post("/register", (req,res) => {
-    let arr_users = [req.body.nama,req.body.username,req.body.password,req.body.level],
-        sql = "INSERT INTO users (nama,username,password,level) VALUES (?,?,?,?)";
+    let arr_users = [req.body.nama,req.body.username,req.body.password,req.body.level,req.body.foto],
+        sql = "INSERT INTO users (nama,username,password,level) VALUES (?,?,?,?,?)";
 
     conn.query(sql,arr_users, (err,rows,fields) =>{
         if (err)
@@ -59,10 +59,6 @@ app.post("/login", (req,res) => {
         if (err)
             console.log(err);
         
-        // console.log(rows.length);
-        // console.log(rows);
-
-        // res.send(rows.length);
         if (rows.length > 0)
             res.send({"sukses":"1","pesan":"akun user ada!"});
         else
@@ -107,8 +103,8 @@ app.get("/barang", (req,res) => {
 });
 
 app.post("/barang", (req,res) => {
-    let arr_barang = [req.body.nama_barang,req.body.kategori,req.body.jumlah],
-        sql = "INSERT INTO barang (nama_barang,kategori,jumlah) VALUES (?,?,?)";
+    let arr_barang = [req.body.nama_barang,req.body.kategori,req.body.jumlah,req.body.foto],
+        sql = "INSERT INTO barang (nama_barang,kategori,jumlah) VALUES (?,?,?,?)";
 
     conn.query(sql,arr_users, (err,rows,fields) =>{
         if (err)
